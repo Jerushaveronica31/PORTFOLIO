@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jerusha Veronica - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #0b0f19;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(8px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+        nav a {
+            color: #e5e7eb;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        nav a:hover {
+            color: #ef4444;
+        }
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 90vh;
+            background-image: url('profile.jpg');
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #0b0f19;
+            display: flex;
+            align-items: center;
+            padding: 0 80px;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 55%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(11, 15, 25, 0.95) 45%, rgba(11, 15, 25, 0.1) 100%);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 580px;
+        }
+        .hero-content h1 {
+            font-size: 54px;
+            margin-bottom: 20px;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.1;
+        }
+        .hero-content h1 span {
+            color: #ef4444;
+        }
+        .hero-content p {
+            font-size: 18px;
+            color: #d1d5db;
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+        .btn-container {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.3s;
+            font-size: 15px;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-primary {
+            background-color: #ef4444;
+            color: white;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.5);
+        }
+        .btn-primary:hover {
+            background-color: #dc2626;
+        }
+        .btn-secondary {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        .btn-secondary:hover {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.2);
+        }
+        section {
+            padding: 70px 80px;
+            border-bottom: 1px solid #1f2937;
+        }
+        h2 {
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #ffffff;
+            border-bottom: 3px solid #ef4444;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .card {
+            background: #111827;
+            padding: 35px;
+            border-radius: 12px;
+            border: 1px solid #1f2937;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .card:hover {
+            transform: scale(1.02);
+            border-color: #ef4444;
+        }
+        .card h3 {
+            color: #ef4444;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        .card p, .card li {
+            color: #9ca3af;
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+        .skill-category-title {
+            color: #f3f4f6;
+            font-size: 22px;
+            margin: 35px 0 20px 0;
+            border-left: 4px solid #ef4444;
+            padding-left: 12px;
+        }
+        .skills-grid-detailed {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .skill-box {
+            background: #111827;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #1f2937;
+            transition: 0.3s;
+        }
+        .skill-box:hover {
+            border-color: #ef4444;
+            transform: translateY(-5px);
+        }
+        .skill-box h4 {
+            color: #ef4444;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .skill-box p {
+            color: #9ca3af;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .projects-grid-individual {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        .project-card-large {
+            background: #111827;
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid #1f2937;
+            border-left: 5px solid #ef4444;
+            transition: 0.3s;
+        }
+        .project-card-large:hover {
+            border-color: #ef4444;
+            transform: translateY(-3px);
+        }
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .project-card-large h3 {
+            color: #ffffff;
+            font-size: 24px;
+        }
+        .project-card-large h3 span {
+            color: #ef4444;
+        }
+        .project-tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .tech-badge {
+            background: #1f2937;
+            color: #f3f4f6;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            border: 1px solid #374151;
+            font-weight: 600;
+        }
+        .project-details-list {
+            list-style-type: none;
+            margin-top: 15px;
+        }
+        .project-details-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            color: #9ca3af;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        .project-details-list li::before {
+            content: "•";
+            color: #ef4444;
+            font-weight: bold;
+            font-size: 20px;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+        .mega-one-page-section {
+            background: #070a12;
+            padding: 90px 80px;
+            border-top: 3px solid #ef4444;
+        }
+        .mega-layout {
+            display: grid;
+            grid-template-columns: 2.5fr 1fr;
+            gap: 40px;
+            background: #0f1624;
+            padding: 50px;
+            border-radius: 16px;
+            border: 1px solid #1f2937;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+        }
+        .mega-main-content h2 {
+            font-size: 38px;
+            color: #ffffff;
+            margin-bottom: 10px;
+            border-bottom: none;
+        }
+        .mega-main-content h2 span {
+            color: #ef4444;
+        }
+        .mega-subtitle {
+            color: #9ca3af;
+            font-size: 16px;
+            margin-bottom: 35px;
+        }
+        .mega-columns-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+        .mega-block {
+            background: #131b2e;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #1f2937;
+        }
+        .mega-block h4 {
+            color: #ef4444;
+            font-size: 17px;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #1f2937;
+            padding-bottom: 6px;
+        }
+        .mega-block p, .mega-block li {
+            color: #d1d5db;
+            font-size: 13.5px;
+            line-height: 1.6;
+        }
+        .mega-sidebar {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: rgba(17, 24, 39, 0.9);
+            padding: 35px 25px;
+            border-radius: 12px;
+            border: 1px solid #1f2937;
+            text-align: center;
+        }
+        .mega-sidebar h3 {
+            font-size: 22px;
+            color: #ffffff;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        .mega-sidebar p {
+            color: #9ca3af;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+        .mega-stats {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #1f2937;
+        }
+        .mega-stat-box h2 {
+            color: #ef4444;
+            font-size: 26px;
+            margin-bottom: 5px;
+            border: none;
+            display: block;
+        }
+        .mega-stat-box p {
+            color: #9ca3af;
+            font-size: 11px;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            align-items: center;
+        }
+        .contact-form {
+            background: #111827;
+            padding: 35px;
+            border-radius: 12px;
+            border: 1px solid #1f2937;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            color: #d1d5db;
+            font-size: 14px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            background: #1f2937;
+            border: 1px solid #374151;
+            border-radius: 8px;
+            color: white;
+            font-size: 15px;
+            outline: none;
+            transition: 0.3s;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: #ef4444;
+        }
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        .social-btn {
+            background: #1f2937;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            border: 1px solid #374151;
+            transition: 0.3s;
+        }
+        .social-btn:hover {
+            background: #ef4444;
+            border-color: #ef4444;
+        }
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #07090f;
+            color: #6b7280;
+            font-size: 14px;
+            border-top: 1px solid #1f2937;
+        }
+        @media(max-width: 1024px) {
+            .mega-layout {
+                grid-template-columns: 1fr;
+            }
+            .mega-columns-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Local Audio Element using your uploaded 'no-signal.mp3' file -->
+    <audio id="bg-music" preload="auto">
+        <source src="no-signal.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- Floating Play/Pause Button -->
+    <div style="position: fixed; bottom: 30px; right: 30px; z-index: 1000; background: rgba(17, 24, 39, 0.95); padding: 12px 18px; border-radius: 50px; border: 1px solid #ef4444; box-shadow: 0 4px 20px rgba(239, 68, 68, 0.6); display: flex; align-items: center; gap: 10px;">
+        <button id="play-btn" style="background: #ef4444; color: white; border: none; padding: 8px 16px; border-radius: 30px; font-weight: bold; cursor: pointer; font-size: 13px;" onclick="togglePlayAudio()">
+            ▶ Play BGM
+        </button>
+        <span style="color: #ffffff; font-size: 12px; font-weight: bold;">🎵 "No Signal" (1 Min)</span>
+    </div>
+
+    <script>
+        const music = document.getElementById("bg-music");
+        const playBtn = document.getElementById("play-btn");
+        let stopTimer = null;
+
+        function togglePlayAudio() {
+            if (music.paused) {
+                music.currentTime = 0;
+                music.play().then(() => {
+                    playBtn.innerHTML = "⏸ Pause BGM";
+                    
+                    // Automatically stop after exactly 60 seconds (1 minute)
+                    stopTimer = setTimeout(() => {
+                        music.pause();
+                        playBtn.innerHTML = "▶ Play BGM";
+                    }, 60000);
+
+                }).catch(error => {
+                    console.log("Audio play error:", error);
+                });
+            } else {
+                music.pause();
+                clearTimeout(stopTimer);
+                playBtn.innerHTML = "▶ Play BGM";
+            }
+        }
+    </script>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="logo">JERUSHA VERONICA</div>
+        <nav>
+            <a href="#about">ABOUT</a>
+            <a href="#skills">SKILLS</a>
+            <a href="#projects">PROJECTS</a>
+            <a href="#experience">EXPERIENCE</a>
+            <a href="#credentials">CREDENTIALS</a>
+            <a href="#onepage">OVERVIEW</a>
+            <a href="#contact">CONTACT</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Hi, I'm a <span>Data Analyst</span></h1>
+            <p>I am a detail-oriented Master of Science (M.Sc.) student in Computer Science at Rathinam College of Arts and Science, specializing in translating complex, unstructured datasets into clear, actionable business intelligence. Leveraging a strong quantitative foundation and advanced programming skills, I excel in data cleaning, exploratory data analysis, and predictive modeling using Python, SQL, and robust visualization frameworks like Power BI and Seaborn.</p>
+            <div class="btn-container">
+                <a href="#projects" class="btn btn-primary">VIEW MY WORK</a>
+                <a href="#contact" class="btn btn-secondary">GET IN TOUCH</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="grid-container">
+            <div class="card">
+                <h3>Academic Excellence & Background</h3>
+                <p>I am currently pursuing my <strong>Master of Science (M.Sc.) in Computer Science</strong> at Rathinam College of Arts and Science / Rathinam Global University, Coimbatore. Previously, I earned my Bachelor of Science (B.Sc.) degree in Computer Science with a specialized focus on <strong>Cloud Technology & Information Security</strong> from the same esteemed institution.</p>
+                <p>My academic journey has equipped me with a robust technical foundation, blending advanced software concepts with secure cloud infrastructure and modern data analysis methodologies.</p>
+            </div>
+            <div class="card">
+                <h3>Professional Vision & Passion</h3>
+                <p>As an aspiring <strong>Data Analyst</strong>, my core strength lies in bridging the gap between raw, unstructured datasets and actionable corporate intelligence. I specialize in utilizing Python, SQL, and interactive visualization frameworks to uncover meaningful patterns and drive data-backed decision-making.</p>
+                <p>Committed to continuous learning, I constantly explore emerging technologies in data analytics, cloud systems, and cybersecurity to deliver efficient, scalable, and secure digital solutions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Skills Section -->
+    <section id="skills">
+        <h2>My Skills</h2>
+        
+        <h3 class="skill-category-title">Programming & Data Analysis Languages</h3>
+        <div class="skills-grid-detailed">
+            <div class="skill-box">
+                <h4>Python & R</h4>
+                <p>Extensively used for data manipulation, statistical processing, modeling, and building predictive analytics scripts.</p>
+            </div>
+            <div class="skill-box">
+                <h4>SQL & MySQL</h4>
+                <p>Writing complex queries, joins, and database management to extract and structure large corporate datasets efficiently.</p>
+            </div>
+            <div class="skill-box">
+                <h4>Pandas, NumPy, Matplotlib & Seaborn</h4>
+                <p>Core libraries utilized for high-performance data manipulation, cleaning, and creating exploratory visualizations.</p>
+            </div>
+        </div>
+
+        <h3 class="skill-category-title">Data Visualization & Business Intelligence</h3>
+        <div class="skills-grid-detailed">
+            <div class="skill-box">
+                <h4>Microsoft Power BI & Fabric</h4>
+                <p>Designing dynamic interactive dashboards, end-to-end data analysis workflows, and transforming raw metrics into KPIs.</p>
+            </div>
+            <div class="skill-box">
+                <h4>Tableau</h4>
+                <p>Creating compelling visual dashboards and business intelligence reports to present complex data insights clearly.</p>
+            </div>
+        </div>
+
+        <h3 class="skill-category-title">Spreadsheets, Surveys & Data Collection</h3>
+        <div class="skills-grid-detailed">
+            <div class="skill-box">
+                <h4>Microsoft Excel</h4>
+                <p>Advanced data management, pivot tables, lookup formulas, rating sheets, and automated reporting.</p>
+            </div>
+            <div class="skill-box">
+                <h4>SurveyMonkey</h4>
+                <p>Designing professional surveys, collecting responses, and analyzing qualitative audience feedback.</p>
+            </div>
+        </div>
+
+        <h3 class="skill-category-title">Cloud Technology, IoT & Cybersecurity</h3>
+        <div class="skills-grid-detailed">
+            <div class="skill-box">
+                <h4>AWS & Cloud Computing</h4>
+                <p>Cloud architecture, EC2/machine learning integrations, and NASSCOM emerging cloud computing paradigms.</p>
+            </div>
+            <div class="skill-box">
+                <h4>IoT on Cloud</h4>
+                <p>Connecting IoT devices to cloud infrastructure for automated data streaming and operational analytics.</p>
+            </div>
+            <div class="skill-box">
+                <h4>Cybersecurity</h4>
+                <p>System security analysis, vulnerability assessments, and secure log auditing practices.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+    <section id="projects">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid-individual">
+            <div class="project-card-large">
+                <div class="project-header">
+                    <h3>Smart Fare Collection System & Analytics</h3>
+                </div>
+                <div class="project-tech-stack">
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">Pandas</span>
+                    <span class="tech-badge">Matplotlib</span>
+                    <span class="tech-badge">Seaborn</span>
+                    <span class="tech-badge">IoT Data Analytics</span>
+                </div>
+                <ul class="project-details-list">
+                    <li>Processed and cleaned over 1,000+ raw IoT transportation fare records using Python Pandas, effectively resolving missing values and formatting inconsistencies.</li>
+                    <li>Computed comprehensive revenue metrics, operational trends, and commuter frequency patterns across different schedules.</li>
+                    <li>Identified peak travel hours (pinpointing 9 PM as the highest volume timeframe) to help optimize transit scheduling and resource allocation.</li>
+                    <li>Developed clear, publication-ready exploratory data visualizations using Matplotlib and Seaborn to present actionable intelligence to stakeholders.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Experience Section -->
+    <section id="experience">
+        <h2>Professional Experience & Internships</h2>
+        <div class="projects-grid-individual">
+            <div class="project-card-large">
+                <div class="project-header">
+                    <h3>Cyber Security Intern <span>- Skolar</span></h3>
+                </div>
+                <div class="project-tech-stack">
+                    <span class="tech-badge">Python Scripting</span>
+                    <span class="tech-badge">Security Logs</span>
+                    <span class="tech-badge">Data Organization</span>
+                    <span class="tech-badge">Threat Analysis</span>
+                </div>
+                <ul class="project-details-list">
+                    <li>Conducted deep security analysis of complex system network logs and vulnerability datasets as part of specialized cybersecurity coursework.</li>
+                    <li>Designed and deployed custom Python automation scripts to parse, filter, and organize massive volumes of security log data.</li>
+                    <li>Streamlined log auditing workflows, successfully boosting data organization efficiency and threat identification speed by 25%.</li>
+                    <li>Applied rigorous information security protocols and data sanitization practices to secure sensitive digital assets.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Credentials Section -->
+    <section id="credentials">
+        <h2>Professional Credentials & Certifications</h2>
+        <div class="grid-container">
+            <div class="card">
+                <h3>Deloitte Data Analytics Job Simulation</h3>
+                <p>Completed practical simulation covering corporate data analytics tasks, data interpretation, and professional business reporting.</p>
+            </div>
+            <div class="card">
+                <h3>Google Analytics & Data Foundations</h3>
+                <p>Certified in Getting Started in Google Analytics & Data Analytics Foundations (Coursera)</p>
+            </div>
+            <div class="card">
+                <h3>Data Analytics - Novitech</h3>
+                <p>Complete Data Analytics certification covering core manipulation and insights extraction workflows.</p>
+            </div>
+            <div class="card">
+                <h3>Master Class in Data Analytics</h3>
+                <p>Advanced practical training turning complex data arrays into professional analytical insights.</p>
+            </div>
+            <div class="card">
+                <h3>Microsoft Fabric & Power BI</h3>
+                <p>End-to-end data analysis using Microsoft Fabric and Get Started Building with Power BI certification.</p>
+            </div>
+            <div class="card">
+                <h3>Excel & SurveyMonkey Analytics</h3>
+                <p>Rating Batches with Excel and SurveyMonkey certification to create surveys and analyze qualitative results.</p>
+            </div>
+            <div class="card">
+                <h3>Cyber Security Master Class - Novitech</h3>
+                <p>Comprehensive Cyber Security Master Class covering advanced network and system protection.</p>
+            </div>
+            <div class="card">
+                <h3>Great Learning Cloud Certifications</h3>
+                <p>Cloud Engineer Roles and Responsibilities, Learn Internet of Things on Cloud, Virtual Cloud Computing & AWS Machine Learning.</p>
+            </div>
+            <div class="card">
+                <h3>NASSCOM FutureSkills Prime</h3>
+                <p>Overview of Cloud Computing, Starting with Cloud Computing, Emerging Technologies & Future Expectations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mega One-Page Overview Section -->
+    <section id="onepage" class="mega-one-page-section">
+        <div class="mega-layout">
+            <div class="mega-main-content">
+                <h2>JERUSHA VERONICA <span>- MASTER SUMMARY</span></h2>
+                <p class="mega-subtitle">Education, training, core stack, projects, and certifications comprehensively compressed onto a single page view.</p>
+                <div class="mega-columns-grid">
+                    <div class="mega-block">
+                        <h4>Education</h4>
+                        <p><strong>M.Sc. & B.Sc. Computer Science</strong><br>Rathinam College of Arts and Science.</p>
+                    </div>
+                    <div class="mega-block">
+                        <h4>Core Skills & Tools</h4>
+                        <p>Python, SQL, Power BI, Microsoft Fabric, Excel, SurveyMonkey, AWS Cloud & IoT.</p>
+                    </div>
+                    <div class="mega-block">
+                        <h4>Experience & Projects</h4>
+                        <p><strong>Cyber Security Intern</strong> - Skolar<br><strong>Project:</strong> Smart Fare Collection System & Analytics</p>
+                    </div>
+                    <div class="mega-block">
+                        <h4>Top Certifications</h4>
+                        <p>Deloitte Data Analytics Simulation, Novitech Analytics & Cybersecurity, Google Analytics, Power BI & NASSCOM Cloud.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mega-sidebar">
+                <div>
+                    <h3>Every episode, on one page.</h3>
+                    <p>A panoramic high-level overview designed for recruiters to scan your entire profile in seconds.</p>
+                    <a href="#contact" class="btn btn-primary" style="padding: 12px 24px; font-size: 14px; border-radius: 8px; width: 100%;">Get In Touch</a>
+                </div>
+                <div class="mega-stats">
+                    <div class="mega-stat-box">
+                        <h2>02</h2>
+                        <p>Degrees</p>
+                    </div>
+                    <div class="mega-stat-box">
+                        <h2>01</h2>
+                        <p>Internship</p>
+                    </div>
+                    <div class="mega-stat-box">
+                        <h2>16+</h2>
+                        <p>Certs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <div class="contact-container">
+            <div class="card">
+                <h3>Let's Connect</h3>
+                <p>I am actively looking for new opportunities, data analytics projects, and collaborations. Feel free to connect via professional networks or send a message directly!</p>
+                <div class="social-links">
+                    <a href="https://linkedin.com" target="_blank" class="social-btn">LinkedIn</a>
+                    <a href="https://github.com" target="_blank" class="social-btn">GitHub</a>
+                    <a href="mailto:contact@jerushaveronica.com" class="social-btn">Email Me</a>
+                </div>
+            </div>
+            <div class="contact-form">
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label>Your Email</label>
+                    <input type="email" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea rows="4" placeholder="Write your message here..."></textarea>
+                </div>
+                <button type="button" class="btn btn-primary" style="width: 100%; border-radius: 8px; cursor: pointer;">Send Message</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Jerusha Veronica. Designed with passion for data analytics & tech.</p>
+    </footer>
+
+</body>
+</html>
